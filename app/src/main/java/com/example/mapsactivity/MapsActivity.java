@@ -2,10 +2,12 @@ package com.example.mapsactivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -68,6 +70,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMapType(1);
         }
 
+    }
+
+    public void getLocation(){
+        try{
+            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+            //get GPS status
+            isGPSEnabled = LocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            if(isGPSEnabled) Log.d("MyMaps","getLocation: GPS is enabled");
+            //you do this
+            //get Network status
+            if(!isGPSEnabled && !isNetworkEnabled)
+                Log.d("MyMap","getLocation: No provider is enabled");
+            else{
+                
+            }
+        }
     }
 
 }
